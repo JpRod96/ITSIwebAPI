@@ -28,7 +28,7 @@ public class WebSecurityConfigurations extends WebSecurityConfigurerAdapter
                 .csrf().disable()
                 //.addFilterAfter(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class)
                 .authorizeRequests()
-                .antMatchers("/css/**", "/").permitAll()
+                .antMatchers("/", "/pages/**").permitAll()
                 .anyRequest().authenticated();
     }
 }
