@@ -1,7 +1,7 @@
 .div-banner{
     height: 50vh;
-    margin-top: 3%;
-    width: 100%;
+    margin-top: 5%;
+    width: 100vw;
     background-image: url("/images/banner.jpg");
     background-size: 100vw 50vh;
     background-repeat: no-repeat;
@@ -85,6 +85,12 @@
 
 .blue-purple:hover{
     background-color: rgba(123, 73, 180, 0.5);
+}
+
+#classroom-logo{
+    height: 3em;
+    width: 4em;
+    padding-right: 1em;
 }
 
 .degrees{
