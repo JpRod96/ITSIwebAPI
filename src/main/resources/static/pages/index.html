@@ -1,10 +1,168 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <link rel="stylesheet" href="libs/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="libs/animate.css/animate.min.css"/>
+    <link rel="stylesheet" href="css/styles.css" />
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAGMk1kEOf3LEMcbBGuoEGetZ8X3k_GML4" defer></script>
+    <script src="libs/jquery/dist/jquery.min.js"></script>
+    <script src="libs/letteringJs/jquery.lettering-0.6.1.min.js"></script>
+    <script src="libs/textillate-0.4.0/jquery.textillate.js"></script>
+    <script src="js/App.js"></script>
+    <title>
+        Bienvenido - Instituto Tecnico San Ignacio
+    </title>
+    <meta charset="utf-8">
 </head>
 <body>
-<label styles="fontsize:100">:v</label>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand">I.T.S.I.</a>
+        </div>
+        <ul class="nav navbar-nav">
+
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="#"><span class="glyphicon glyphicon-log-in"></span>IIniciar Sesion</a></li>
+        </ul>
+    </div>
+</nav>
+<div class="div-banner">
+    <div class="layer">
+        <div>
+            <h1 class="tlt" data-in-effect="rollIn">Instituto Técnico "San Ignacio"</h1>
+            <h2 class="tlt" data-in-effect="rollIn"><em>15 años educando para cuidar la salud</em></h2>
+        </div>
+        <div id="description">
+            <p>
+            <h3 data-in-effect="fadeInRight">
+                Nuestro principal objetivo es <br>
+                <em>
+                    "Contribuir al desarrollo de las políticas nacionales y regionales <br>
+                    en el área de salud pública y comunitaria, <br>
+                    a partir de la formación de recursos humanos<br>
+                    en función de las necesidades de la comunidad."
+                </em>
+            </h3>
+            </p>
+        </div>
+    </div>
+</div>
+<div class="container-forms">
+    <div class="inline-div mission-background">
+        <div class="turquish" id="left-div">
+            <h1 class="isHidden" data-in-effect="pulse" data-out-effect="fadeOutRight">Mision</h1>
+            <p class="isHidden" >
+                Es la de servir a la comunidad <br/>
+                formando recursos humanos competentes y capaces <br/>
+                de asumir las funciones específicas de enfermería que comprendan:<br/>
+                orientación, consejería y asistencia directa<br/>
+                en los diferentes niveles de prestación de servicios de salud<br/>
+                a la población, además de brindar educación<br/>
+                para el fomento de la salud y al mismo tiempo<br/>
+                contribuir con la prevención de las enfermedades<br/>
+                para así elevar el nivel y la calidad de la salud de la población.
+            </p>
+        </div>
+    </div>
+    <div class="inline-div vission-background">
+        <div class="blue-purple" id="right-div">
+            <h1 data-in-effect="pulse">Vision</h1>
+            <p class="isHidden">
+                <br/>
+                <br/>
+                <br/>
+                <em>
+                    PROMOVER LA SALUD PARA TODOS EN ÉSTE NUEVO MILENIO<br/>
+                    EN PROYECCION DE UN PAIS MAS SANO<br/>
+                    Y ECONOMICAMENTE MAS ACTIVO Y PRODUCTIVO.
+                </em>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+            </p>
+        </div>
+    </div>
+</div>
+<div class="degrees">
+    <h1>
+        Carreras
+    </h1>
+    <div id="nurse">
+        <div class="layer-div">
+            <h2>Enfermeria</h2>
+
+            <br/>
+            <ul>
+                <li>
+                    <strong>Especializacion y capacitacion</strong>
+                </li>
+                <li>
+                    <strong>2 años de duracion</strong>
+                </li>
+                <li>
+                    <strong>Dirigido a bachilleres</strong>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+    <div id="surgical">
+        <div class="layer-div">
+            <h2>Instrumentacion Quirúrgica</h2>
+            <br/>
+            <ul>
+                <li>
+                    <strong>Especializacion y capacitacion</strong>
+                </li>
+                <li>
+                    <strong>8 meses de duracion</strong>
+                </li>
+                <li>
+                    <strong>Dirigido a profesionales en el area de la salud</strong>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div id="info">
+    <h1>Informaciones y Contactos</h1>
+    <ul>
+        <li>
+            Telefono: 4431716
+        </li>
+        <li>
+            Horarios: Lunes - Viernes : 8:30 - 12:00 y 14:30 - 21:30
+            <br/>
+            Sabados: 8:15 - 10:30
+        </li>
+        <li>
+            Direccion: Av. Capitan Ustariz Km.4 - Cochabamba - Bolivia
+        </li>
+    </ul>
+</div>
+<div id="map">
+</div>
+<footer>
+    <div id="footer-links">
+        <div>
+            Visita nuestra pagina de Facebook:
+            <a href="https://www.w3schools.com">
+                <img border="0" alt="W3Schools" src="images/fb.png" width="35" height="35">
+            </a>
+        </div>
+        <!--<div id="link-login">
+            <a id="link-login" href="#">
+                Iniciar Sesion en el sistema
+            </a>
+        </div>-->
+    </div>
+    <div id="copyright">
+        © 2020 Copyright - I.T.S.I.
+    </div>
+</footer>
+<script src="js/script.js"></script>
 </body>
 </html>

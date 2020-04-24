@@ -1,0 +1,169 @@
+.div-banner{
+    height: 50vh;
+    margin-top: 3%;
+    width: 100%;
+    background-image: url("/images/banner.jpg");
+    background-size: 100vw 50vh;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+.layer {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-color: rgba(15, 226, 241,0.8);
+    display:flex;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: 1s;
+}
+
+.layer:hover{
+    background-color: rgba(15, 226, 241,0.2);
+    color: rgb(248, 248, 248);
+}
+
+.layer div{
+    display: inline-block;
+}
+
+#description{
+    color: rgb(253, 252, 250);
+    text-align: center;
+    margin-left: 10%;
+    width: 50%;
+    height: 80%;
+    align-items: center;
+    justify-content: baseline;
+}
+
+.container-forms{
+    margin-top: 1%;
+    text-align: center;
+    width: 100vw;
+}
+.inline-div{
+    width: 50%;
+    height: 35vh;
+    display: inline-block;
+    margin: -1% 0% -0.2% -0.5%;
+}
+
+.mission-background{
+    background-image: url("/images/mision.jpg");
+    background-size: 50vw 35vh;
+    background-repeat: no-repeat;
+}
+
+.turquish{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 97, 252, 0.8);
+    color: aliceblue;
+    transition: 1s;
+}
+
+.turquish:hover{
+    background-color: rgba(0, 151, 252, 0.5);
+}
+
+.vission-background{
+    background-image: url("/images/vision.JPG");
+    background-size: 50vw 35vh;
+    background-repeat: no-repeat;
+}
+
+.blue-purple{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(123, 73, 180, 0.8);
+    color: aliceblue;
+    transition: 1s;
+}
+
+.blue-purple:hover{
+    background-color: rgba(123, 73, 180, 0.5);
+}
+
+.degrees{
+    margin-top: 3vh;
+    height: 45vh;
+    color: aliceblue;
+    background-color: black;
+}
+
+.degrees div{
+    display: inline-block;
+    height: 95%;
+    width: 50%;
+    background-size: 50vw 35vh;
+    background-repeat: no-repeat;
+}
+
+#nurse{
+    background-image: url("/images/enfermera.webp");
+}
+
+#surgical{
+    width: 49.5%;
+    background-image: url("/images/instrumentacion.jpg");
+}
+
+.layer-div{
+    width: 45%;
+    height: 95%;
+    background-color: rgba(250, 235, 215, 0.6);
+    color: black;
+}
+
+#map{
+    height: 35vh;
+    width: 100vw;
+}
+
+#info{
+    color: antiquewhite;
+    margin-top: 2vh;
+    height: 25vh;
+    width: 100vw;
+    background-color: cadetblue;
+}
+
+footer{
+    background-color: rgb(6, 111, 248);
+    height: 15vh;
+    width:100vw;
+    color: rgb(32, 3, 3);
+    position: relative;
+}
+
+#copyright{
+    position:absolute; 
+    bottom:0;
+    height: 1.8em;
+    text-align: center;
+    width: 100%;
+    background-color: rgb(3, 27, 58);
+    color: azure;
+}
+
+#footer-links{
+    position:absolute; 
+    bottom:40%;
+    text-align: center;
+    color: aliceblue;
+    font-size: 20;
+}
+
+#footer-links div{
+    display: inline-block;
+    margin-left: 2em;
+    margin-right: 2em;
+}
+
+#link-login{
+    
+    color: aliceblue;
+}
