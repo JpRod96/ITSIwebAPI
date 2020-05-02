@@ -1,5 +1,7 @@
 package com.ITSI.itsiweb.configurations.security;
 
+import com.ITSI.itsiweb.configurations.security.JWTConfiguration.JWTAuthenticationFilter;
+import com.ITSI.itsiweb.configurations.security.JWTConfiguration.JWTAuthorizationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -35,7 +37,10 @@ public class WebSecurityConfigurations extends WebSecurityConfigurerAdapter
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/", "/pages/**", "/libs/**", "/css/**", "/js/**", "/images/**").permitAll()
-                .anyRequest().authenticated();
+                .anyRequest().authenticated()
+                .and()
+                .addFilter(new JWTAuthenticationFilter(authenticationManager()))
+                .addFilter(new JWTAuthorizationFilter(authenticationManager()));;
     }
 
     @Override
