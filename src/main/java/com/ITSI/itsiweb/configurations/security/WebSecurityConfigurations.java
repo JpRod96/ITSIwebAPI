@@ -36,7 +36,7 @@ public class WebSecurityConfigurations extends WebSecurityConfigurerAdapter
                 .cors().and()
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/", "/pages/**", "/libs/**", "/css/**", "/js/**", "/images/**").permitAll()
+                .antMatchers("/", "/pages/**", "/libs/**", "/css/**", "/js/**", "/images/**", "/login").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .addFilter(new JWTAuthenticationFilter(authenticationManager()))
