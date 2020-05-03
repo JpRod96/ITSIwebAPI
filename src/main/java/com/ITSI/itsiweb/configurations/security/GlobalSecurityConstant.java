@@ -15,4 +15,5 @@ public class GlobalSecurityConstant {
     public static final String ISSUER_INFO = "https://www.itsisrl.com/";
     public static final String SECRET_KEY = "1234";
     public static final long TOKEN_EXPIRATION_TIME = EXPIRATION_DAYS * MILLISECONDS_A_DAY;
+    public static final String AUTHORITIES_KEY = "CLAIM_TOKEN";
 }

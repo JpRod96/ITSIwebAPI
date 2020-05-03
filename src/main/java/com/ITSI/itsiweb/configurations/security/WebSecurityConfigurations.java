@@ -5,19 +5,23 @@ import com.ITSI.itsiweb.configurations.security.JWTConfiguration.JWTAuthorizatio
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 @Configuration
 @EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfigurations extends WebSecurityConfigurerAdapter
 {
     @Autowired
@@ -26,6 +30,17 @@ public class WebSecurityConfigurations extends WebSecurityConfigurerAdapter
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    public JWTAuthorizationFilter JWTAuthorizationFilterBean() {
+        return new JWTAuthorizationFilter();
+    }
+
+    @Override
+    @Bean
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        return super.authenticationManagerBean();
     }
 
     @Override
@@ -39,13 +54,13 @@ public class WebSecurityConfigurations extends WebSecurityConfigurerAdapter
                 .antMatchers("/", "/pages/**", "/libs/**", "/css/**", "/js/**", "/images/**", "/login").permitAll()
                 .anyRequest().authenticated()
                 .and()
-                .addFilter(new JWTAuthenticationFilter(authenticationManager()))
-                .addFilter(new JWTAuthorizationFilter(authenticationManager()));;
+                .addFilterBefore(new JWTAuthenticationFilter(authenticationManager()),
+                        UsernamePasswordAuthenticationFilter.class)
+                .addFilterBefore(JWTAuthorizationFilterBean(), UsernamePasswordAuthenticationFilter.class);
     }
 
     @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
-        // Se define la clase que recupera los usuarios y el algoritmo para procesar las passwords
         auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder());
     }
 

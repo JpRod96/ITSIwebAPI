@@ -1,55 +1,48 @@
 package com.ITSI.itsiweb.configurations.security.JWTConfiguration;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.security.authentication.AuthenticationManager;
+import com.ITSI.itsiweb.utils.TokenProvider;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
-import io.jsonwebtoken.Jwts;
+import org.springframework.util.StringUtils;
+import org.springframework.web.filter.OncePerRequestFilter;
 
 import static com.ITSI.itsiweb.configurations.security.GlobalSecurityConstant.*;
 
-public class JWTAuthorizationFilter extends BasicAuthenticationFilter{
+public class JWTAuthorizationFilter extends OncePerRequestFilter {
 
-    public JWTAuthorizationFilter(AuthenticationManager authManager) {
-        super(authManager);
-    }
+    @Autowired
+    private UserDetailsService userDetailsService;
+
+    public JWTAuthorizationFilter(){}
 
     @Override
-    protected void doFilterInternal(HttpServletRequest req, HttpServletResponse res, FilterChain chain)
-            throws IOException, ServletException {
-        String header = req.getHeader(HEADER_AUTHORIZATION_KEY);
-        if (header == null || !header.startsWith(TOKEN_BEARER_PREFIX)) {
-            chain.doFilter(req, res);
+    protected void doFilterInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse,
+                                    FilterChain filterChain) throws ServletException, IOException {
+        String authorizationHeader = httpServletRequest.getHeader(HEADER_AUTHORIZATION_KEY);
+
+        if (StringUtils.isEmpty(authorizationHeader) || !authorizationHeader
+                .startsWith(TOKEN_BEARER_PREFIX)) {
+            filterChain.doFilter(httpServletRequest, httpServletResponse);
             return;
         }
-        UsernamePasswordAuthenticationToken authentication = getAuthentication(req);
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-        chain.doFilter(req, res);
-    }
+        final String token = authorizationHeader.replace(TOKEN_BEARER_PREFIX + " ", "");
 
-    private UsernamePasswordAuthenticationToken getAuthentication(HttpServletRequest request) {
-        String token = request.getHeader(HEADER_AUTHORIZATION_KEY);
-        if (token != null) {
-            String user = Jwts.parser()
-                    .setSigningKey(SECRET_KEY)
-                    .parseClaimsJws(token.replace(TOKEN_BEARER_PREFIX, ""))
-                    .getBody()
-                    .getSubject();
+        String userName = TokenProvider.getUserName(token);
+        UserDetails user = userDetailsService.loadUserByUsername(userName);
 
-            if (user != null) {
-                return new UsernamePasswordAuthenticationToken(user, null, new ArrayList<>());
-            }
-            return null;
-        }
-        return null;
+        UsernamePasswordAuthenticationToken authenticationToken = TokenProvider.getAuthentication(token, user);
+        SecurityContextHolder.getContext().setAuthentication(authenticationToken);
+        filterChain.doFilter(httpServletRequest, httpServletResponse);
     }
 }

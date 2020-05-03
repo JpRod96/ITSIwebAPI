@@ -9,6 +9,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.ITSI.itsiweb.utils.TokenProvider;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -37,7 +38,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
             com.ITSI.itsiweb.entities.users.User credentials = new ObjectMapper().readValue(request.getInputStream(), com.ITSI.itsiweb.entities.users.User.class);
 
             return authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
-                    credentials.getUsername(), credentials.getPassword(), new ArrayList<>()));
+                    credentials.getUsername(), credentials.getPassword()));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -45,12 +46,9 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
     @Override
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain,
-                                            Authentication auth) throws IOException, ServletException {
+                                            Authentication authResult) throws IOException, ServletException {
 
-        String token = Jwts.builder().setIssuedAt(new Date()).setIssuer(ISSUER_INFO)
-                .setSubject(((User)auth.getPrincipal()).getUsername())
-                .setExpiration(new Date(System.currentTimeMillis() + TOKEN_EXPIRATION_TIME))
-                .signWith(SignatureAlgorithm.HS512, SECRET_KEY).compact();
+        String token = TokenProvider.generateToken(authResult);
         response.addHeader(HEADER_AUTHORIZATION_KEY, TOKEN_BEARER_PREFIX + " " + token);
     }
 }
