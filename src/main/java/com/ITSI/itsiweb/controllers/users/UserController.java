@@ -1,7 +1,7 @@
 package com.ITSI.itsiweb.controllers.users;
 
 import com.ITSI.itsiweb.entities.users.User;
-import com.ITSI.itsiweb.services.users.UserService;
+import com.ITSI.itsiweb.services.users.User.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
