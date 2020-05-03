@@ -1,5 +1,7 @@
 package com.ITSI.itsiweb.entities.users;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.List;
@@ -11,6 +13,7 @@ public class Role {
     private Integer id;
     @NotNull
     private String name;
+    @JsonIgnore
     @OneToMany(mappedBy = "role", cascade = CascadeType.ALL)
     private List<User> users;
 
