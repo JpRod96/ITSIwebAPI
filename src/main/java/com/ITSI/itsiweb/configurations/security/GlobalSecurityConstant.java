@@ -8,7 +8,7 @@ public class GlobalSecurityConstant {
     // Spring Security
 
     public static final String HEADER_AUTHORIZATION_KEY = "Authorization";
-    public static final String TOKEN_BEARER_PREFIX = "Bearer ";
+    public static final String TOKEN_BEARER_PREFIX = "Bearer";
 
     // JWT
 
