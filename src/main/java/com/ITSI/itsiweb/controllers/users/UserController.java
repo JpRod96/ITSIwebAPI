@@ -8,24 +8,26 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import static com.ITSI.itsiweb.utils.RoleAuthorizationConstants.*;
+
 @RestController
 public class UserController {
     @Autowired
     private UserService userService;
 
-    @PreAuthorize("hasRole('ROLE_ADMINISTRATOR')")
+    @PreAuthorize(ADMINISTRATOR)
     @PostMapping("/user")
     public void saveUser(@RequestBody User user) {
         userService.save(user);
     }
 
-    @PreAuthorize("hasRole('ROLE_STUDENT')")
+    @PreAuthorize(ADMINISTRATOR + OR + STUDENT)
     @GetMapping("/user/{username}")
     public User getUserByUsername(@PathVariable("username")String username){
         return userService.findBy(username);
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMINISTRATOR')")
+    @PreAuthorize(STUDENT)
     @GetMapping("/users")
     public List<User> getAllUsers(){
         return userService.listAllUsers();
