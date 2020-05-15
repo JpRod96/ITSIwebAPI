@@ -18,7 +18,7 @@ public class AccountController {
     private AccountService accountService;
     private final int ROOT_ACCOUNT_LEVEL = 1;
 
-    @PreAuthorize(ACCOUNTANT)
+    @PreAuthorize(ACCOUNTANT + OR + AUXILIARY_ACCOUNTANT)
     @GetMapping(ACCOUNT_PATH + "/rootaccounts")
     public List<Account> getRootAccount(){
         return accountService.getAllFrom(ROOT_ACCOUNT_LEVEL);

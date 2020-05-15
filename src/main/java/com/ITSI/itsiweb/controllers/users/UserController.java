@@ -18,13 +18,13 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @PreAuthorize(ADMINISTRATOR)
+    @PreAuthorize(ADMINISTRATOR + OR + SECRETARY)
     @PostMapping(USER_PATH)
     public void saveUser(@RequestBody User user) {
         userService.save(user);
     }
 
-    @PreAuthorize(ADMINISTRATOR + OR + STUDENT + OR + ACCOUNTANT + OR + AUXILIARY_ACCOUNTANT)
+    @PreAuthorize(ADMINISTRATOR + OR + STUDENT + OR + ACCOUNTANT + OR + AUXILIARY_ACCOUNTANT + OR + SECRETARY)
     @GetMapping(USER_PATH)
     public User getLoggedUser(){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();

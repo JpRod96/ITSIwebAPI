@@ -7,7 +7,7 @@ import java.util.List;
 @Entity
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @NotNull
     private String username;
@@ -46,7 +46,7 @@ public class User {
         return roles;
     }
 
-    public void setRole(List<Role> roles) {
+    public void setRoles(List<Role> roles) {
         this.roles = roles;
     }
 }
