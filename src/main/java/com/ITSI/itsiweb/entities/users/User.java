@@ -2,6 +2,7 @@ package com.ITSI.itsiweb.entities.users;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Entity
 public class User {
@@ -13,8 +14,9 @@ public class User {
     @NotNull
     private String password;
     @NotNull
-    @ManyToOne
-    private Role role;
+    @ManyToMany
+    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private List<Role> roles;
 
     public Integer getId() {
         return id;
@@ -40,11 +42,11 @@ public class User {
         this.password = password;
     }
 
-    public Role getRole() {
-        return role;
+    public List<Role> getRoles() {
+        return roles;
     }
 
-    public void setRole(Role role) {
-        this.role = role;
+    public void setRole(List<Role> roles) {
+        this.roles = roles;
     }
 }
