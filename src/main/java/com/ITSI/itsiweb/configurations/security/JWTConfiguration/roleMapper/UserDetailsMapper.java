@@ -8,6 +8,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class UserDetailsMapper {
@@ -15,9 +16,9 @@ public class UserDetailsMapper {
         return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), getAuthorities(user));
     }
     private static Set<? extends GrantedAuthority> getAuthorities(User retrievedUser) {
-        Role role = retrievedUser.getRole();
+        List<Role> roles = retrievedUser.getRoles();
         Set<SimpleGrantedAuthority> authorities = new HashSet<>();
-        authorities.add(new SimpleGrantedAuthority("ROLE_" + role.getName()));
+        roles.forEach(role -> authorities.add(new SimpleGrantedAuthority("ROLE_" + role.getName())));
         return authorities;
     }
 }
