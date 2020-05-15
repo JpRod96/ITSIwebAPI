@@ -1,5 +1,7 @@
 package com.ITSI.itsiweb.entities.accountability;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Null;
@@ -16,6 +18,7 @@ public class Account {
     private int level;
     @NotNull
     private int code;
+    @JsonIgnore
     @Null
     @ManyToOne
     private Account upperAccount;

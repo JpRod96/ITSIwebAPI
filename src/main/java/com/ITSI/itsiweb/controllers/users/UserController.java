@@ -16,23 +16,23 @@ import static com.ITSI.itsiweb.utils.RoleAuthorizationConstants.*;
 public class UserController {
     @Autowired
     private UserService userService;
-    private final String USER_ROOT = "/user";
+    private final String USER_PATH = "/user";
 
     @PreAuthorize(ADMINISTRATOR)
-    @PostMapping(USER_ROOT)
+    @PostMapping(USER_PATH)
     public void saveUser(@RequestBody User user) {
         userService.save(user);
     }
 
     @PreAuthorize(ADMINISTRATOR + OR + STUDENT + OR + ACCOUNTANT + OR + AUXILIARY_ACCOUNTANT)
-    @GetMapping(USER_ROOT)
+    @GetMapping(USER_PATH)
     public User getLoggedUser(){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         return userService.findBy(auth.getName());
     }
 
     @PreAuthorize(ADMINISTRATOR)
-    @GetMapping(USER_ROOT + "/all")
+    @GetMapping(USER_PATH + "/all")
     public List<User> getAllUsers(){
         return userService.listAllUsers();
     }
