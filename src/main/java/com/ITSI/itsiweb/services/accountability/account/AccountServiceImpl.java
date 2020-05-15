@@ -11,10 +11,9 @@ import java.util.List;
 public class AccountServiceImpl implements AccountService{
     @Autowired
     private AccountRepository accountRepository;
-    private int ROOT_LEVEL = 1;
 
     @Override
-    public List<Account> getRootAccounts(){
-        return accountRepository.getAllFrom(ROOT_LEVEL);
+    public List<Account> getAllFrom(int level){
+        return accountRepository.getAllFrom(level);
     }
 }

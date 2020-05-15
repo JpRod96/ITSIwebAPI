@@ -5,5 +5,5 @@ import com.ITSI.itsiweb.entities.accountability.Account;
 import java.util.List;
 
 public interface AccountService {
-    List<Account> getRootAccounts();
+    List<Account> getAllFrom(int level);
 }

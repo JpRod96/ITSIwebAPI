@@ -11,12 +11,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 import static com.ITSI.itsiweb.utils.RoleAuthorizationConstants.*;
+import static com.ITSI.itsiweb.utils.WebPathsConstants.USER_PATH;
 
 @RestController
 public class UserController {
     @Autowired
     private UserService userService;
-    private final String USER_PATH = "/user";
 
     @PreAuthorize(ADMINISTRATOR)
     @PostMapping(USER_PATH)

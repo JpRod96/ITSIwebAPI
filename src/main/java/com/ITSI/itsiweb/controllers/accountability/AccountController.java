@@ -10,16 +10,17 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 import static com.ITSI.itsiweb.utils.RoleAuthorizationConstants.*;
+import static com.ITSI.itsiweb.utils.WebPathsConstants.*;
 
 @RestController
 public class AccountController {
     @Autowired
     private AccountService accountService;
-    private final String ACCOUNT_PATH = "/account";
+    private final int ROOT_ACCOUNT_LEVEL = 1;
 
     @PreAuthorize(ACCOUNTANT)
     @GetMapping(ACCOUNT_PATH + "/rootaccounts")
     public List<Account> getRootAccount(){
-        return accountService.getRootAccounts();
+        return accountService.getAllFrom(ROOT_ACCOUNT_LEVEL);
     }
 }
