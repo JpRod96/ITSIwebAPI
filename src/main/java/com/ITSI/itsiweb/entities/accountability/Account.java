@@ -6,11 +6,12 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Null;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Account {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @NotNull
     private String name;
@@ -25,6 +26,8 @@ public class Account {
     @Null
     @OneToMany(mappedBy = "upperAccount", cascade = CascadeType.ALL)
     private List<Account> subAccounts;
+    @OneToMany(mappedBy = "account", cascade = CascadeType.ALL)
+    private Set<Registry> registries;
 
     public Integer getId() {
         return id;
@@ -72,5 +75,13 @@ public class Account {
 
     public void setSubAccounts(List<Account> subAccounts) {
         this.subAccounts = subAccounts;
+    }
+
+    public Set<Registry> getRegistries() {
+        return registries;
+    }
+
+    public void setRegistries(Set<Registry> registries) {
+        this.registries = registries;
     }
 }
